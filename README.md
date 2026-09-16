@@ -56,7 +56,7 @@ fitflow-redesign/
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/<your-username>/fitflow-redesign.git
+   git clone https://github.com/Ravindu-Dev/fitflow-redesign.git
    cd fitflow-redesign
    ```
 
