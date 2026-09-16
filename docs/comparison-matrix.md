@@ -18,6 +18,5 @@
 
 | Technology | Role | Key Advantages | Selected |
 |---|---|---|---|
-| **Spring Boot** | Backend API | Enterprise scalability, high performance, robust security | Yes |
+| **Spring Boot** | Core Backend API & Native AI Engine | Enterprise scalability, high performance, robust security, and in-app Java recommendation algorithms | Yes |
 | **MongoDB** | Database | Flexible document model for dynamic workout/nutrition data | Yes |
-| **FastAPI (Python)** | AI Service | Lightweight, fast integration with PyTorch/TensorFlow models | Yes |

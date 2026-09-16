@@ -23,9 +23,8 @@ graph TD
 
     %% Microservices Layer
     subgraph Microservices Layer
-        CoreBackend[Spring Boot Core Service - User Profile & Workouts]
+        CoreBackend[Spring Boot Core Service - User Profile, Workouts & Native AI Engine]
         SocialService[Spring Boot Social Service - Circles & Feeds]
-        AIService[Python / FastAPI AI Microservice - Recommendation Engine & CV]
     end
 
     %% Data & Infrastructure Layer
@@ -41,14 +40,12 @@ graph TD
     APIGateway --> AuthServer
     APIGateway --> CoreBackend
     APIGateway --> SocialService
-    APIGateway --> AIService
 
     CoreBackend --> MongoDB
     CoreBackend --> RedisCache
+    CoreBackend --> S3Storage
     SocialService --> MongoDB
     SocialService --> RedisCache
-    AIService --> MongoDB
-    AIService --> S3Storage
 ```
 
 ---
@@ -61,17 +58,14 @@ sequenceDiagram
     autonumber
     actor User as Mobile App (React Native)
     participant GW as API Gateway
-    participant Core as Spring Boot Core API
-    participant AI as Python AI Service
+    participant Core as Spring Boot Core API (Native Java AI)
     participant DB as MongoDB
 
     User->>GW: GET /api/v1/workouts/daily-flow
     GW->>Core: Forward request with validated JWT
     Core->>DB: Fetch user profile, recent activity & fitness goals
     DB-->>Core: Return profile metadata
-    Core->>AI: POST /ai/generate-plan (profile metadata)
-    AI->>AI: Run ML Recommendation Model (TensorFlow)
-    AI-->>Core: Return tailored workout plan JSON
+    Core->>Core: Run Native Java Recommendation Engine
     Core->>DB: Save recommended plan
     Core-->>GW: Return HTTP 200 (Workout Plan)
     GW-->>User: Render "Daily Flow" Recommendation Card
@@ -81,18 +75,18 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as Mobile App (React Native Camera)
+    actor User as Mobile App (React Native & On-Device TF Lite)
     participant GW as API Gateway
-    participant AI as Python AI Service (OpenCV/PyTorch)
+    participant Core as Spring Boot Core API
     participant DB as MongoDB
 
-    User->>GW: POST /api/v1/nutrition/recognize (Image File)
-    GW->>AI: Stream image to AI Vision Service
-    AI->>AI: Run Object Recognition & Food Classifier Model
-    AI-->>GW: Return predicted food items + confidence score + estimated calories
-    GW-->>User: Display food recognition result for user confirmation
-    User->>GW: POST /api/v1/nutrition/log (Confirmed Meal)
-    GW->>DB: Save meal entry to user daily journal
+    User->>User: Capture meal photo & run on-device TensorFlow Lite model
+    User->>User: Extract recognized food items & calorie estimates
+    User->>GW: POST /api/v1/nutrition/log (Recognized Meal)
+    GW->>Core: Forward meal log entry
+    Core->>DB: Save meal entry to user daily journal
+    Core-->>GW: Return HTTP 201 Created
+    GW-->>User: Display confirmation & updated daily calorie summary
 ```
 
 ### 3.3 Feature 3: Private Social Circles & Activity Feed
@@ -117,7 +111,7 @@ sequenceDiagram
 
 ## 4. Architecture Decision Record (ADR)
 
-### ADR-001: Selection of React Native, Spring Boot, MongoDB, and Python AI Microservice for FitFlow Redesign
+### ADR-001: Selection of React Native, Spring Boot, and MongoDB for FitFlow Redesign
 
 * **Status:** Approved
 * **Date:** 2026-09-16
@@ -128,27 +122,25 @@ FitFlow experienced a significant decline in user retention (drop to 3.8 stars) 
 1. Fast cross-platform mobile delivery for iOS and Android.
 2. Enterprise-grade, scalable API backend.
 3. Flexible storage for dynamic health metrics and meal logs.
-4. Dedicated AI microservice for recommendation algorithms and computer vision food recognition.
+4. Native Java AI recommendation algorithms and on-device computer vision food recognition.
 
 #### Decision
 We decided to adopt:
-- **Frontend:** React Native (TypeScript) with `react-native-reanimated`.
-- **Backend Services:** Java Spring Boot for enterprise APIs and microservice architecture.
-- **AI Microservice:** Python (FastAPI) leveraging PyTorch / TensorFlow Lite.
+- **Frontend:** React Native (TypeScript) with `react-native-reanimated` & On-Device ML (TensorFlow Lite).
+- **Backend Services:** Java Spring Boot for enterprise APIs, microservices, and native Java AI recommendation engine.
 - **Database:** MongoDB Atlas (NoSQL) for high-performance schema flexibility.
 - **Authentication:** Firebase Auth with JWT verification.
 
 #### Consequences
 * **Positive Consequences:**
   - High code reusability (>85%) across mobile platforms using React Native.
-  - Decoupled AI microservice allows independent scaling of heavy ML compute workloads without degrading main API responsiveness.
+  - Native Java execution of AI recommendations in Spring Boot and on-device ML in React Native eliminates external service latency and multi-language deployment overhead.
   - MongoDB document model eliminates complex SQL migrations when adding new fitness attributes.
 * **Negative Consequences:**
-  - Managing a multi-language stack (Java, Python, TypeScript) increases operational complexity.
   - Requires maintaining proper contract definitions (OpenAPI/Swagger) across services.
 
 ---
 
 ## 5. Security & Scalability Considerations
 - **Security:** OAuth2/JWT authentication, TLS 1.3 encryption for data in transit, AES-256 for data at rest in MongoDB Atlas, and strict GDPR compliance for anonymized health data.
-- **Scalability:** Horizontal scaling of Spring Boot backend instances via Kubernetes/Docker; Redis caching layer for sub-10ms feed reads; decoupled async queuing for AI image processing tasks.
+- **Scalability:** Horizontal scaling of Spring Boot backend instances via Kubernetes/Docker; Redis caching layer for sub-10ms feed reads; on-device client processing for computer vision tasks.

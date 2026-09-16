@@ -37,9 +37,9 @@ This document consolidates findings from frontend, backend, database, and authen
 
 | Framework | Dev Speed (20%) | Scalability (15%) | AI Integration (15%) | Security (15%) | Maintainability (15%) | Performance (10%) | Cost (10%) | Weighted Total Score |
 |---|---|---|---|---|---|---|---|---|
-| **Spring Boot (Selected)** | **8/10 (1.60)** | **9/10 (1.35)** | **8/10 (1.20)** | **10/10 (1.50)** | **9/10 (1.35)** | **9/10 (0.90)** | **8/10 (0.80)** | **8.70 / 10** |
+| **Spring Boot (Selected)** | **8/10 (1.60)** | **9/10 (1.35)** | **9/10 (1.35)** | **10/10 (1.50)** | **9/10 (1.35)** | **9/10 (0.90)** | **8/10 (0.80)** | **8.85 / 10** |
 | Node.js / NestJS | 9/10 (1.80) | 8/10 (1.20) | 8/10 (1.20) | 8/10 (1.20) | 8/10 (1.20) | 8/10 (0.80) | 9/10 (0.90) | 8.30 / 10 |
-| FastAPI (Python) | 9/10 (1.80) | 8/10 (1.20) | 10/10 (1.50) | 7/10 (1.05) | 8/10 (1.20) | 8/10 (0.80) | 9/10 (0.90) | 8.45 / 10 |
+| FastAPI (Python) [Evaluated] | 9/10 (1.80) | 8/10 (1.20) | 10/10 (1.50) | 7/10 (1.05) | 8/10 (1.20) | 8/10 (0.80) | 9/10 (0.90) | 8.45 / 10 |
 | Go (Gin) | 7/10 (1.40) | 10/10 (1.50) | 6/10 (0.90) | 9/10 (1.35) | 8/10 (1.20) | 10/10 (1.00) | 9/10 (0.90) | 8.25 / 10 |
 
 ---
@@ -58,9 +58,9 @@ This document consolidates findings from frontend, backend, database, and authen
 
 1. **Frontend: React Native (Score: 8.45)**
    Provides maximum cross-platform code reuse, rapid feature iteration, and rich animations for interactive workouts.
-2. **Backend: Spring Boot (Score: 8.70)**
-   Delivers enterprise-grade security, thread management, robust REST microservice APIs, and reliable long-term maintainability.
+2. **Backend: Spring Boot (Score: 8.85)**
+   Delivers enterprise-grade security, thread management, robust REST microservice APIs, native Java AI recommendation processing, and reliable long-term maintainability.
 3. **Database: MongoDB (Score: 8.65)**
    Offers optimal schema flexibility for storing evolving user data, AI-generated exercise plans, and unstructured nutrition metadata.
-4. **AI Engine: Python / FastAPI (Score: 8.45 in AI category)**
-   Powers deep learning models, pose estimation, and food recognition via OpenCV and PyTorch/TensorFlow.
+4. **AI Processing: Java Spring Boot & On-Device ML (TensorFlow Lite)**
+   Powers recommendation algorithms directly within Spring Boot and computer vision pose tracking/meal recognition via on-device TensorFlow Lite in React Native.

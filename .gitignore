@@ -26,17 +26,6 @@ target/
 *.war
 *.ear
 
-# Python / AI Service
-__pycache__/
-*.pyc
-*.pyo
-venv/
-.venv/
-env/
-*.onnx
-*.pth
-*.h5
-
 # Logs
 *.log
 npm-debug.log*

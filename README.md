@@ -17,9 +17,8 @@ This repository serves as the official monorepo and documentation hub for **IT30
 ---
 
 ## 🛠️ Selected Technology Stack
-- **Mobile Frontend:** React Native (iOS & Android) with `react-native-reanimated`
-- **Core Backend Service:** Java Spring Boot (REST API Microservices)
-- **AI Microservice:** Python (FastAPI, PyTorch / TensorFlow Lite, OpenCV)
+- **Mobile Frontend:** React Native (iOS & Android) with `react-native-reanimated` & On-Device ML (TensorFlow Lite)
+- **Core Backend Service:** Java Spring Boot (REST APIs & Native Java AI Recommendation Engine)
 - **Database:** MongoDB Atlas (NoSQL Document Store)
 - **Authentication:** Firebase Auth & JWT
 
@@ -30,7 +29,6 @@ This repository serves as the official monorepo and documentation hub for **IT30
 fitflow-redesign/
 ├── frontend/                               # React Native mobile application codebase
 ├── backend/                                # Spring Boot backend API service codebase
-├── ai-service/                             # Python AI & Computer Vision microservice codebase
 └── docs/                                   # Lab Exercise 05 Documentation Suite
     ├── activity1-frontend-comparison.md    # Activity 1: Frontend analysis & selection
     ├── activity2-backend-database-auth.md  # Activity 2: Backend, DB & Auth analysis
@@ -48,7 +46,6 @@ fitflow-redesign/
 ### Prerequisites
 - Node.js (v18+) & npm/yarn
 - Java Development Kit (JDK 17+)
-- Python (v3.10+)
 - MongoDB (Local instance or MongoDB Atlas URI)
 - Git
 
@@ -72,15 +69,6 @@ fitflow-redesign/
    cd ../backend
    ./mvnw clean install  # or ./gradlew build
    ./mvnw spring-boot:run
-   ```
-
-4. **AI Microservice Setup (Python)**
-   ```bash
-   cd ../ai-service
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   pip install -r requirements.txt
-   uvicorn main:app --reload
    ```
 
 ---

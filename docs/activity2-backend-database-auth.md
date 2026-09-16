@@ -9,9 +9,9 @@ This document evaluates candidate backend frameworks, database management system
 
 | Framework | Language | Performance & Concurrency | Scalability | AI/ML Integration | Dev Speed | Security & Ecosystem | Recommendation Status |
 |---|---|---|---|---|---|---|---|
-| **Spring Boot** | Java | Very High (Multithreading/Virtual Threads) | Enterprise High | Moderate (via REST to AI Microservice) | High | Excellent (Spring Security, Enterprise standards) | **Selected for Core API** |
+| **Spring Boot** | Java | Very High (Multithreading/Virtual Threads) | Enterprise High | Outstanding (Native Java AI engine & ONNX/DL4J runtime) | High | Excellent (Spring Security, Enterprise standards) | **Selected for Core API & Native AI** |
 | **Node.js / NestJS** | TypeScript | High (Event Loop / Async I/O) | High | Good (JS/Python IPC) | Very High | Good | Alternative |
-| **FastAPI** | Python | High (Asynchronous ASGI) | High | Outstanding (Native PyTorch/TensorFlow/OpenCV) | Very High | Good | **Selected for AI Microservice** |
+| **FastAPI** | Python | High (Asynchronous ASGI) | High | Outstanding (Native PyTorch/TensorFlow/OpenCV) | Very High | Good | Evaluated (Replaced by Spring Boot & On-Device ML) |
 | **Go (Gin/Fiber)** | Go | Extremely High (Goroutines) | Extremely High | Low (Requires Cgo/External) | High | Strong | Overkill for mid-sized team |
 
 ---
@@ -50,7 +50,7 @@ This document evaluates candidate backend frameworks, database management system
 ---
 
 ## 6. Recommended Technology Combination
-- **Core Backend Service:** **Spring Boot** (Java 17+) for enterprise business logic, user management, and transactional integrity.
-- **AI Microservice:** **Python / FastAPI** for serving machine learning models (personalized workout generation and computer vision food recognition).
+- **Core Backend Service & AI Engine:** **Spring Boot** (Java 17+) for enterprise business logic, user management, transactional integrity, and native AI workout recommendation processing.
+- **On-Device Computer Vision:** **React Native & TensorFlow Lite** on the mobile client for zero-latency camera-based nutrition and pose recognition.
 - **Primary Database:** **MongoDB Atlas** for storing unstructured workout routines, nutrition logs, and user profile metadata.
 - **Authentication:** **Firebase Auth** with JWT verification on the Spring Boot backend gateway.
