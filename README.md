@@ -4,16 +4,23 @@ A human-centered redesign of the **FitFlow** fitness tracking application, addre
 
 ---
 
-## 📌 Project Overview
-FitFlow is a health-tech platform designed to empower users on their fitness journey. This repository contains the full monorepo structure for the redesigned FitFlow mobile client, backend microservices, AI engine, and technical documentation.
+## 📌 Project Overview & Lab Exercise 05 Complete Coverage
+
+This repository serves as the official monorepo and documentation hub for **IT3060 - Human Computer Interaction (Lab Exercise 05)**. It contains the complete deliverables for all 5 activities:
+
+1. **[Activity 1: Frontend Framework Comparison](docs/activity1-frontend-comparison.md)** — In-depth evaluation of React Native, Flutter, Kotlin Multiplatform, and SwiftUI.
+2. **[Activity 2: Backend, Database & Auth Comparison](docs/activity2-backend-database-auth.md)** — Comparative analysis of Spring Boot, Node.js, FastAPI, MongoDB, PostgreSQL, and Firebase Auth.
+3. **[Activity 3: Weighted Decision Matrix](docs/activity3-weighted-decision-matrix.md)** — Comprehensive decision matrix with criterion weights tailored for FitFlow.
+4. **[Activity 4: System Architecture & ADR](docs/activity4-architecture-and-adr.md)** — High-level Mermaid diagrams, feature data flows, and formal Architecture Decision Record (ADR-001).
+5. **[Activity 5: GitHub Repository Setup & Governance](README.md)** — Repository setup, folder structure, `.gitignore`, and branch protection guidelines.
 
 ---
 
-## 🛠️ Technology Stack
-- **Mobile Frontend:** React Native (iOS & Android)
-- **Backend Service:** Java Spring Boot (RESTful API & Microservices)
-- **Database:** MongoDB (NoSQL Document Store)
-- **AI Microservice:** Python (FastAPI, TensorFlow Lite, Computer Vision)
+## 🛠️ Selected Technology Stack
+- **Mobile Frontend:** React Native (iOS & Android) with `react-native-reanimated`
+- **Core Backend Service:** Java Spring Boot (REST API Microservices)
+- **AI Microservice:** Python (FastAPI, PyTorch / TensorFlow Lite, OpenCV)
+- **Database:** MongoDB Atlas (NoSQL Document Store)
 - **Authentication:** Firebase Auth & JWT
 
 ---
@@ -21,13 +28,17 @@ FitFlow is a health-tech platform designed to empower users on their fitness jou
 ## 📁 Repository Structure
 ```
 fitflow-redesign/
-├── frontend/        # React Native mobile application
-├── backend/         # Spring Boot backend API service
-├── ai-service/      # Python AI & Computer Vision microservice
-└── docs/            # Project documentation, comparison matrices & architecture
-    ├── tech-stack-summary.md
-    ├── comparison-matrix.md
-    └── architecture-diagram.md
+├── frontend/                               # React Native mobile application codebase
+├── backend/                                # Spring Boot backend API service codebase
+├── ai-service/                             # Python AI & Computer Vision microservice codebase
+└── docs/                                   # Lab Exercise 05 Documentation Suite
+    ├── activity1-frontend-comparison.md    # Activity 1: Frontend analysis & selection
+    ├── activity2-backend-database-auth.md  # Activity 2: Backend, DB & Auth analysis
+    ├── activity3-weighted-decision-matrix.md# Activity 3: Weighted decision matrix
+    ├── activity4-architecture-and-adr.md   # Activity 4: Architecture diagram & ADR-001
+    ├── tech-stack-summary.md               # Executive Tech Stack Summary
+    ├── comparison-matrix.md                # Quick Matrix Reference
+    └── architecture-diagram.md             # System Diagram Overview
 ```
 
 ---
@@ -74,9 +85,10 @@ fitflow-redesign/
 
 ---
 
-## 🔒 Branch Protection Guidelines
-To ensure code quality and maintain repository integrity, follow the branch protection rules outlined in the setup documentation when pushing to GitHub:
-1. Require a Pull Request (PR) before merging into `main`.
-2. Require at least 1 approving review.
-3. Require status checks (CI/CD pipeline build & tests) to pass before merging.
-4. Restrict direct pushes to the `main` branch.
+## 🔒 Branch Protection Guidelines (Activity 5)
+To ensure code quality and maintain repository integrity on GitHub:
+1. Navigate to **Settings** > **Branches** > **Add branch protection rule**.
+2. Set **Branch name pattern** to `main`.
+3. Enable **Require a pull request before merging** (Minimum 1 approval).
+4. Enable **Require status checks to pass before merging**.
+5. Enable **Do not allow bypassing the above settings**.
